@@ -47,6 +47,17 @@ def submit_event_form():
 	name_field.send_keys("test")
 
 	# type in email
+	email_field = browser.find_element_by_id("nf-field-723")
+	email_field.click()
+	# name_field.send_keys(name)
+	email_field.send_keys("test")
+
+	# type in phone
+	phone_field = browser.find_element_by_id("nf-field-728")
+	phone_field.click()
+	# name_field.send_keys(name)
+	phone_field.send_keys("9511234567")
+
 
 	return browser
 
