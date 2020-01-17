@@ -83,7 +83,6 @@ def select_category():
 	category_field = browser.find_element_by_css_selector("#nf-field-764")
 	category_field.click()
 	category_field.send_keys("Equipment")
-	category_field.click()	
 
 def type_amount():
 	amount_field = browser.find_element_by_css_selector("#nf-field-750")
