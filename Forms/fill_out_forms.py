@@ -15,3 +15,7 @@ def get_form_page():
 	#click enter to enter password
 	submit_element = browser.find_element_by_name("Submit") #get the password box
 	submit_element.click()
+	# pause()
+	return browser
+
+browser = get_form_page()
