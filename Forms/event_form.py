@@ -12,7 +12,7 @@ def get_user_info():
 	email = input("What's the email? ")
 	phone = input("What's your phone number? ")
 
-def get_form_page():
+def get_forms_page():
 	global browser
 
 	browser.get("https://ccbf.net/wp-login.php?loggedout=true")#make sure you are logged out of ccbf
@@ -105,5 +105,5 @@ def submit_event_form():
 	return browser
 
 # get_user_info()
-browser = get_form_page()
+browser = get_forms_page()
 browser = submit_event_form()
