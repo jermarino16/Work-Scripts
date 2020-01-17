@@ -10,6 +10,7 @@ def get_user_info():
 
 	name = input("Who's filling out the form? ")
 	email = input("What's the email? ")
+	phone = input("What's your phone number? ")
 
 def get_form_page():
 	global browser
@@ -29,7 +30,7 @@ def get_form_page():
 	return browser
 
 def submit_event_form():
-	global browser
+	global browser, name
 	# open the hyperlink
 	event_planning_link = browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(1) > a")
 	event_planning_link.click()
@@ -39,12 +40,13 @@ def submit_event_form():
 	# print(len(browser.window_handles)) #check how many windows we have open, should be 2
 	browser.switch_to.window(browser.window_handles[1])
 
-	print(browser.current_url) #what url are we on
-	# #type in name
-	# name_field = browser.find_element_by_id("nf-field-721")
-	# name_field.click()
-	# # name_field.send_keys(name)
-	# name_field.send_keys("test")
+	# type in name
+	name_field = browser.find_element_by_id("nf-field-721")
+	name_field.click()
+	# name_field.send_keys(name)
+	name_field.send_keys("test")
+
+	# type in email
 
 	return browser
 
