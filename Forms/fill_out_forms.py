@@ -50,7 +50,7 @@ def submit_event_form():
 	email_field = browser.find_element_by_id("nf-field-723")
 	email_field.click()
 	# name_field.send_keys(name)
-	email_field.send_keys("test")
+	email_field.send_keys("test@test.com")
 
 	# type in phone
 	phone_field = browser.find_element_by_id("nf-field-728")
@@ -58,6 +58,49 @@ def submit_event_form():
 	# name_field.send_keys(name)
 	phone_field.send_keys("9511234567")
 
+	#type in event name
+	event_field = browser.find_element_by_id("nf-field-730")
+	event_field.click()
+	# name_field.send_keys(name)
+	event_field.send_keys("camp")
+
+	#type in event purpose
+	event_field = browser.find_element_by_id("nf-field-731")
+	event_field.click()
+	# name_field.send_keys(name)
+	event_field.send_keys("purps")
+
+	#choose ministry sponsoring event
+	event_field = browser.find_element_by_id("nf-field-820")
+	event_field.click()
+	# name_field.send_keys(name)
+	event_field.send_keys("Jr. High")
+
+	#insert date of event
+	date_field = browser.find_element_by_css_selector("#nf-field-732-wrap > div.nf-field-element > div > input.pikaday__display.pikaday__display--pikaday.ninja-forms-field.nf-element.datepicker")
+	date_field.click()
+	# name_field.send_keys(name)
+	date_field.send_keys("12052012")
+	date_field.click()
+
+	#type end time of event
+	event_end_time_field = browser.find_element_by_css_selector("#nf-field-800")
+	event_end_time_field.click()
+	# name_field.send_keys(name)
+	event_end_time_field.send_keys("12am")
+
+	#type location of event
+	location_field = browser.find_element_by_id("nf-field-856")
+	location_field.click()
+	# name_field.send_keys(name)
+	location_field.send_keys("Grace")
+	location_field.click()
+
+	# #type start time of event ###DEBUG
+	# event_start_time_field = browser.find_element_by_css_selector("#nf-field-856")
+	# event_start_time_field.click()
+	# # name_field.send_keys(name)
+	# event_start_time_field.send_keys("7pm")
 
 	return browser
 
