@@ -77,11 +77,42 @@ def select_ministry():
 	ministry_field = browser.find_element_by_css_selector("#nf-field-755")
 	ministry_field.click()
 	ministry_field.send_keys("Junior High")
-	ministry_field.click()	
-	
+	# ministry_field.click()	
+
+def select_category():
+	category_field = browser.find_element_by_css_selector("#nf-field-764")
+	category_field.click()
+	category_field.send_keys("Equipment")
+	category_field.click()	
+
+def type_amount():
+	amount_field = browser.find_element_by_css_selector("#nf-field-750")
+	amount_field.click()
+	amount_field.send_keys("10.52")
+
+def type_check_info():
+	check_field = browser.find_element_by_css_selector("#nf-field-794")
+	check_field.click()
+	check_field.send_keys("Jeremy is cool")
+
+def select_payment_type():
+	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
+	payment_type_field.click()
+	payment_type_field.send_keys("Check")
+
+def type_notes():
+	notes_field = browser.find_element_by_css_selector("#nf-field-797")
+	notes_field.click()
+	notes_field.send_keys("Wow this is cool")
+
 def fill_out_page_2():
 	type_description()
 	select_ministry()
+	select_category()
+	type_amount()
+	select_payment_type()
+	type_check_info()
+	type_notes()
 
 
 get_forms_page()
