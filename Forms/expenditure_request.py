@@ -5,11 +5,13 @@ import chromedriver_binary  # Adds chromedriver binary to path
 
 browser = ""
 user_name, email, phone = "", "", ""
+purchase_description, purchase_ministry, purchase_category = "", "", ""
+purchase_amount, payment_type, payment_to, notes = "", "", "", ""
 
 def get_default_user_values():
 	global user_name, user_email, user_phone
 	print("Proceeding with default values")
-	
+
 	user_name = "Jeremy Marino"
 	user_email = "Jeremy@ccbf.net"
 	user_phone = "951-764-2881"
@@ -19,11 +21,16 @@ def get_user_info():
 
 	default_values = input("Do you want to use default values? 1 for yes : ")
 	if default_values == "1":
-		get_default_user_values
+		get_default_user_values()
 	else: 
 		user_name = input("Who's filling out the form? ")
 		user_email = input("What's the email? ")
 		user_phone = input("What's your phone number? ")
+		
+	get_purchase_info()
+
+def get_purchase_info():
+	
 
 def get_forms_page():
 	global browser
