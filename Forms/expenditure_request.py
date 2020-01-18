@@ -98,6 +98,8 @@ def select_payment_type():
 	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
 	payment_type_field.click()
 	payment_type_field.send_keys("Check")
+	payment_type_field.click()
+
 
 def type_notes():
 	notes_field = browser.find_element_by_css_selector("#nf-field-797")
