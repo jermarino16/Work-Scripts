@@ -3,15 +3,27 @@ from selenium.webdriver.common.keys import Keys
 
 import chromedriver_binary  # Adds chromedriver binary to path
 
-browser = webdriver.Chrome()
-name, email = "", ""
+browser = ""
+user_name, email, phone = "", "", ""
+
+def get_default_user_values():
+	global user_name, user_email, user_phone
+	print("Proceeding with default values")
+	
+	user_name = "Jeremy Marino"
+	user_email = "Jeremy@ccbf.net"
+	user_phone = "951-764-2881"
 
 def get_user_info():
-	global name, email
+	global user_name, user_email, user_phone
 
-	name = input("Who's filling out the form? ")
-	email = input("What's the email? ")
-	phone = input("What's your phone number? ")
+	default_values = input("Do you want to use default values? 1 for yes : ")
+	if default_values == "1":
+		get_default_user_values
+	else: 
+		user_name = input("Who's filling out the form? ")
+		user_email = input("What's the email? ")
+		user_phone = input("What's your phone number? ")
 
 def get_forms_page():
 	global browser
@@ -115,11 +127,18 @@ def fill_out_page_2():
 	type_check_info()
 	type_notes()
 
+def main():
+	global browser
+	get_user_info()
+	browser = webdriver.Chrome()
+	get_forms_page()
+	get_expenditure_form()
+	fill_out_page_1()
+	fill_out_page_2()
 
-get_forms_page()
-get_expenditure_form()
-fill_out_page_1()
-fill_out_page_2()
 
 
 
+
+
+main()
