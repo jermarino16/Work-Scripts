@@ -3,6 +3,8 @@ from selenium.webdriver.common.keys import Keys
 
 import chromedriver_binary  # Adds chromedriver binary to path
 
+from time import sleep #to pause execution
+
 browser = ""
 user_name, email, phone = "", "", ""
 purchase_description, purchase_ministry, purchase_category = "", "", ""
@@ -26,11 +28,17 @@ def get_user_info():
 		user_name = input("Who's filling out the form? ")
 		user_email = input("What's the email? ")
 		user_phone = input("What's your phone number? ")
-		
+
 	get_purchase_info()
 
 def get_purchase_info():
-	
+	purchase_description  = input("What's the purchase? ")
+	purchase_ministry = input("What ministry is this for? ")
+	purchase_category = input("What category does this apply to? ")
+	purchase_amount = input("What is the amount? ")
+	payment_type = input("What payment did you use? ")
+	payment_to = input("Who's the payment for? ")
+	notes = input("Do you have any additional notes? ")
 
 def get_forms_page():
 	global browser
@@ -64,17 +72,17 @@ def switch_tabs():
 def type_name():
 	name_field = browser.find_element_by_css_selector("#nf-field-740")
 	name_field.click()
-	name_field.send_keys("Jeremy is cool")
+	name_field.send_keys(user_name)
 
 def type_phone():
 	phone_field = browser.find_element_by_css_selector("#nf-field-741")
 	phone_field.click()
-	phone_field.send_keys("951-764-2881")
+	phone_field.send_keys(user_phone)
 
 def type_email():
 	email_field = browser.find_element_by_css_selector("#nf-field-742")
 	email_field.click()
-	email_field.send_keys("jeremy@ccbf.net")
+	email_field.send_keys(user_email)
 
 def next_page():
 	next_button = browser.find_element_by_class_name("nf-next")
@@ -90,42 +98,43 @@ def fill_out_page_1():
 def type_description():
 	description_field = browser.find_element_by_css_selector("#nf-field-747")
 	description_field.click()
-	description_field.send_keys("Jeremy So cool")
+	description_field.send_keys(purchase_description)
 
 def select_ministry():
 	ministry_field = browser.find_element_by_css_selector("#nf-field-755")
 	ministry_field.click()
-	ministry_field.send_keys("Junior High")
+	ministry_field.send_keys(purchase_ministry)
 	# ministry_field.click()	
 
 def select_category():
 	category_field = browser.find_element_by_css_selector("#nf-field-764")
 	category_field.click()
-	category_field.send_keys("Equipment")
+	category_field.send_keys(purchase_category)
 
 def type_amount():
 	amount_field = browser.find_element_by_css_selector("#nf-field-750")
 	amount_field.click()
-	amount_field.send_keys("10.52")
+	amount_field.send_keys(purchase_amount)
 
 def type_check_info():
 	check_field = browser.find_element_by_css_selector("#nf-field-794")
 	check_field.click()
-	check_field.send_keys("Jeremy is cool")
+	check_field.send_keys(payment_to)
 
 def select_payment_type():
 	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
 	payment_type_field.click()
-	payment_type_field.send_keys("Check")
+	payment_type_field.send_keys(payment_type)
 	payment_type_field.click()
 
 
 def type_notes():
 	notes_field = browser.find_element_by_css_selector("#nf-field-797")
 	notes_field.click()
-	notes_field.send_keys("Wow this is cool")
+	notes_field.send_keys(notes)
 
 def fill_out_page_2():
+	sleep(2) #sleep for 2 secodns to let page load 
 	type_description()
 	select_ministry()
 	select_category()
