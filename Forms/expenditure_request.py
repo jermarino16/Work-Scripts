@@ -72,7 +72,13 @@ def switch_tabs():
 	browser.switch_to.window(browser.window_handles[-1])
 
 def type_name():
-	name_field = browser.find_element_by_css_selector("#nf-field-740")
+	# #find by css_selector --- this works for this page
+	# name_field = browser.find_element_by_css_selector("#nf-field-740")
+	# name_field.click()
+	# name_field.send_keys(user_name)
+
+	#find
+	name_field = browser.find_element_by_name("fname")
 	name_field.click()
 	name_field.send_keys(user_name)
 
@@ -123,9 +129,12 @@ def type_amount():
 	# amount_field.send_keys("10")
 
 def type_check_info():
-	check_field = browser.find_element_by_css_selector("#nf-field-794")
-	check_field.click()
-	check_field.send_keys(payment_to)
+	try:
+		check_field = browser.find_element_by_css_selector("#nf-field-794")
+		check_field.click()
+		check_field.send_keys(payment_to)
+	except NoSuchElementException e:
+		print("That element doesn't exist")
 
 def select_payment_type():
 	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
@@ -157,8 +166,6 @@ def main():
 	get_expenditure_form()
 	fill_out_page_1()
 	fill_out_page_2()
-
-
 
 
 
