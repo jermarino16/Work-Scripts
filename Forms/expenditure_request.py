@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 import chromedriver_binary  # Adds chromedriver binary to path
+import functools #for error handling
 
 from time import sleep #to pause execution
 
@@ -41,6 +43,19 @@ def get_purchase_info():
 	payment_type = input("What payment did you use? ")
 	payment_to = input("Who's the payment for? ")
 	notes = input("Do you have any additional notes? ")
+
+def exception(fn):
+	"""
+	A decorator that wraps the passed in function and logs exceptions should one occur
+	"""
+	@functools.wraps(fn)
+	def wrapper(*args, **kwargs):
+		try:
+			return fn(*args, **kwargs)
+		except NoSuchElementException:
+			print("There was a no such element exception in " + fn.__name__) 
+
+	return wrapper
 
 def get_forms_page():
 	global browser
@@ -106,7 +121,7 @@ def fill_out_page_1():
 def type_description():
 	description_field = browser.find_element_by_css_selector("#nf-field-747")
 	description_field.click()
-	print("Purchase descirption is: " + purchase_description)
+	print("Purchase description is: " + purchase_description)
 	description_field.send_keys(purchase_description)
 	# description_field.send_keys("purchase_description")
 
@@ -128,13 +143,17 @@ def type_amount():
 	amount_field.send_keys(purchase_amount)
 	# amount_field.send_keys("10")
 
+@exception
 def type_check_info():
-	try:
-		check_field = browser.find_element_by_css_selector("#nf-field-794")
-		check_field.click()
-		check_field.send_keys(payment_to)
-	except NoSuchElementException e:
-		print("That element doesn't exist")
+	# try:
+	# 	check_field = browser.find_element_by_css_selector("#nf-field-794")
+	# 	check_field.click()
+	# 	check_field.send_keys(payment_to)
+	# except NoSuchElementException:
+	# 	print("That element doesn't exist")
+	check_field = browser.find_element_by_css_selector("#nf-field-794")
+	check_field.click()
+	check_field.send_keys(payment_to)
 
 def select_payment_type():
 	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
