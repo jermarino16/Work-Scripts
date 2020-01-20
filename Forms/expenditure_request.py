@@ -57,6 +57,7 @@ def exception(fn):
 
 	return wrapper
 
+@exception
 def get_forms_page():
 	global browser
 
@@ -74,18 +75,21 @@ def get_forms_page():
 	# pause()
 	return browser
 
+@exception
 def get_expenditure_form():
 	#click the hyperlink
 	expenditure_hyperlink = browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(2) > a")
 	expenditure_hyperlink.click()
 	switch_tabs()
 
+@exception
 def switch_tabs():
 	# switch to the tab that opened the form
 	browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.TAB)
 	# print(len(browser.window_handles)) #check how many windows we have open, should be 2
 	browser.switch_to.window(browser.window_handles[-1])
 
+@exception
 def type_name():
 	# #find by css_selector --- this works for this page
 	# name_field = browser.find_element_by_css_selector("#nf-field-740")
@@ -97,16 +101,19 @@ def type_name():
 	name_field.click()
 	name_field.send_keys(user_name)
 
+@exception
 def type_phone():
 	phone_field = browser.find_element_by_css_selector("#nf-field-741")
 	phone_field.click()
 	phone_field.send_keys(user_phone)
 
+@exception
 def type_email():
 	email_field = browser.find_element_by_css_selector("#nf-field-742")
 	email_field.click()
 	email_field.send_keys(user_email)
 
+@exception
 def next_page():
 	next_button = browser.find_element_by_class_name("nf-next")
 	next_button.click()
@@ -118,6 +125,7 @@ def fill_out_page_1():
 	next_page()
 	switch_tabs()
 
+@exception
 def type_description():
 	description_field = browser.find_element_by_css_selector("#nf-field-747")
 	description_field.click()
@@ -125,18 +133,21 @@ def type_description():
 	description_field.send_keys(purchase_description)
 	# description_field.send_keys("purchase_description")
 
+@exception
 def select_ministry():
 	ministry_field = browser.find_element_by_css_selector("#nf-field-755")
 	ministry_field.click()
 	ministry_field.send_keys(purchase_ministry)
 	ministry_field.click()	
 
+@exception
 def select_category():
 	category_field = browser.find_element_by_css_selector("#nf-field-764")
 	category_field.click()
 	category_field.send_keys(purchase_category)
 	category_field.click()	
 
+@exception
 def type_amount():
 	amount_field = browser.find_element_by_css_selector("#nf-field-750")
 	amount_field.click()
@@ -155,13 +166,14 @@ def type_check_info():
 	check_field.click()
 	check_field.send_keys(payment_to)
 
+@exception
 def select_payment_type():
 	payment_type_field = browser.find_element_by_css_selector("#nf-field-758")
 	payment_type_field.click()
 	payment_type_field.send_keys(payment_type)
 	payment_type_field.click()
 
-
+@exception
 def type_notes():
 	notes_field = browser.find_element_by_css_selector("#nf-field-797")
 	notes_field.click()
