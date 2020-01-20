@@ -53,7 +53,7 @@ def exception(fn):
 		try:
 			return fn(*args, **kwargs)
 		except NoSuchElementException:
-			print("There was a no such element exception in " + fn.__name__) 
+			print("There was a NoSuchElementException in " + fn.__name__) 
 
 	return wrapper
 
@@ -103,15 +103,25 @@ def type_name():
 
 @exception
 def type_phone():
-	phone_field = browser.find_element_by_css_selector("#nf-field-741")
+	#find by css_selector --- this works for this page	
+	# phone_field = browser.find_element_by_css_selector("#nf-field-741")
+	# phone_field.click()
+	# phone_field.send_keys(user_phone)
+
+	phone_field = browser.find_element_by_name("phone")
 	phone_field.click()
 	phone_field.send_keys(user_phone)
 
 @exception
 def type_email():
-	email_field = browser.find_element_by_css_selector("#nf-field-742")
+	#find by css_selector --- this works for this page	
+	# email_field = browser.find_element_by_css_selector("#nf-field-742")
+	# email_field.click()
+	# email_field.send_keys(user_email)
+
+	email_field = browser.find_element_by_name("email")
 	email_field.click()
-	email_field.send_keys(user_email)
+	email_field.send_keys(user_email)	
 
 @exception
 def next_page():
