@@ -21,6 +21,7 @@ class Ninja_Forms_Automator():
 
 	def start_browser(self):
 		self.browser = webdriver.Chrome()
+		return self.browser
 
 	def exception(fn):
 		"""
@@ -128,14 +129,14 @@ class Ninja_Forms_Automator():
 
 
 # ALL OF THESE WORK NEED TO IMPLEMENT ON EXPENDITURE FORM
-# ninja_forms = Ninja_Forms_Automator()
-# ninja_forms.start_browser()
-# ninja_forms.get_forms_page()
-# ninja_forms.get_expenditure_form()
-# ninja_forms.type_name()
-# ninja_forms.type_phone()
-# ninja_forms.type_email()
-# ninja_forms.next_page()
+ninja_forms = Ninja_Forms_Automator()
+ninja_forms.start_browser()
+ninja_forms.get_forms_page()
+ninja_forms.get_expenditure_form()
+ninja_forms.type_name()
+ninja_forms.type_phone()
+ninja_forms.type_email()
+ninja_forms.next_page()
 
 
 
