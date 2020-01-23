@@ -98,18 +98,19 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 
 	def fill_out_page_2(self):
 		# sleep(2) #sleep for 2 secodns to let page load 
-		type_description()
-		select_ministry()
-		select_category()
-		type_amount()
-		select_payment_type()
-		type_check_info()
-		type_notes()
+		self.type_description()
+		self.select_ministry()
+		self.select_category()
+		self.type_amount()
+		self.select_payment_type()
+		self.type_check_info()
+		self.type_notes()
 
 def main():
 	# create a ninja forms object and create a browser
 	form_automation = Expenditure_Request_Automator()
 	form_automation.get_user_info()
+	form_automation.get_purchase_info()
 	# browser = webdriver.Chrome()
 	form_automation.start_browser()
 	form_automation.get_forms_page()
