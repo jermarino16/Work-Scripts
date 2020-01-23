@@ -105,6 +105,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 		self.select_payment_type()
 		self.type_check_info()
 		self.type_notes()
+		return super().browser
 
 def main():
 	# create a ninja forms object and create a browser
@@ -112,11 +113,11 @@ def main():
 	form_automation.get_user_info()
 	form_automation.get_purchase_info()
 	# browser = webdriver.Chrome()
-	form_automation.start_browser()
+	browser_automation = form_automation.start_browser()
 	form_automation.get_forms_page()
 	form_automation.get_expenditure_form()
 	form_automation.fill_out_page_1()
-	form_automation.fill_out_page_2()
+	browser_automation = form_automation.fill_out_page_2()
 
 
 
