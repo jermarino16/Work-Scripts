@@ -113,11 +113,12 @@ def main():
 	form_automation.get_user_info()
 	form_automation.get_purchase_info()
 	# browser = webdriver.Chrome()
-	browser_automation = form_automation.start_browser()
+	global browser_automate #stops browser from closing
+	browser_automate = form_automation.start_browser()
 	form_automation.get_forms_page()
 	form_automation.get_expenditure_form()
 	form_automation.fill_out_page_1()
-	browser_automation = form_automation.fill_out_page_2()
+	form_automation.fill_out_page_2()
 
 
 
