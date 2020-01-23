@@ -3,8 +3,6 @@ import functools #for error handling
 from selenium.common.exceptions import NoSuchElementException
 
 
-
-
 class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 	purchase_description, purchase_ministry, purchase_category = "", "", ""
 	purchase_amount, payment_type, payment_to, notes = "", "", "", ""
@@ -22,9 +20,15 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 
 		return wrapper
 
-	def get_purchase_info(self):
-		# global purchase_description, purchase_ministry, purchase_category, purchase_amount, payment_type, payment_to, notes
-		
+	def get_payment_otpions(self):
+		self.payment_type = input("What payment did you use? ")
+		#if check ask for vendor information
+		if self.payment_type.upper() == "CHECK":
+			#if check ask
+		#if credit ask for whos card
+		#do nothing for petty cash or wire
+
+	def get_purchase_info(self):		
 		self.purchase_description  = input("What's the purchase? ")
 		self.purchase_ministry = input("What ministry is this for? ")
 		self.purchase_category = input("What category does this apply to? ")
@@ -41,7 +45,6 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 		super().switch_tabs()
 
 	def fill_out_page_1(self):
-		#have to call ninja forms class for this
 		super().type_name()
 		super().type_phone()
 		super().type_email()
