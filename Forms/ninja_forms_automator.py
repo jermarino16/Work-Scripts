@@ -7,10 +7,9 @@ import functools #for error handling
 
 from time import sleep #to pause execution
 
-browser = ""
-user_name, email, phone = "", "", ""
-
 class Ninja_Forms_Automator():
+	browser = ""
+	user_name, email, phone = "", "", ""
 	"""
 	A Class for automatic generic ninja forms information
 	"""
@@ -49,7 +48,7 @@ class Ninja_Forms_Automator():
 
 		default_values = input("Do you want to use default values? 1 for yes : ")
 		if default_values == "1":
-			get_default_user_values()
+			self.get_default_user_values()
 		else: 
 			self.user_name = input("Who's filling out the form? ")
 			self.user_email = input("What's the email? ")
@@ -127,15 +126,16 @@ class Ninja_Forms_Automator():
 		self.switch_tabs()
 
 
-ninja_forms = Ninja_Forms_Automator()
 
-ninja_forms.start_browser()
-ninja_forms.get_forms_page()
-ninja_forms.get_expenditure_form()
-ninja_forms.type_name()
-ninja_forms.type_phone()
-ninja_forms.type_email()
-ninja_forms.next_page()
+# ALL OF THESE WORK NEED TO IMPLEMENT ON EXPENDITURE FORM
+# ninja_forms = Ninja_Forms_Automator()
+# ninja_forms.start_browser()
+# ninja_forms.get_forms_page()
+# ninja_forms.get_expenditure_form()
+# ninja_forms.type_name()
+# ninja_forms.type_phone()
+# ninja_forms.type_email()
+# ninja_forms.next_page()
 
 
 
