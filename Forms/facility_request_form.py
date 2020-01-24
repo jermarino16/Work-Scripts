@@ -18,12 +18,14 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 
 		return wrapper
 
+	@exception
 	def get_facility_form(self):
 		#click the hyperlink
 		facility_hyperlink = self.browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(4) > a")
 		facility_hyperlink.click()
 		self.switch_tabs()
 
+	@exception		
 	def get_location(self):
 		valid_inputs = {"1": "Sanctuary", "2": "Children's Ministry", "3": "Office",
 						"4": "Potter's House", "5": "Grace Building", "6": "Foyer",
@@ -49,47 +51,48 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 		self.location = valid_inputs[self.location]#get dictionary value of input
 		return self.location
 
+	@exception
 	def get_description(self):
-		#prompt for user input
-		
-		#save user input
-		pass
+		self.facility_description = input("\nWrite a description of the request\n")
 
+	@exception
 	def get_facility_request_info(self):
 		self.get_location()
-		#get description
-		pass
+		self.get_description()
 
+	@exception
 	def select_location_of_request(self):
-		#select the location
-		pass
+		location_field = self.browser.find_element_by_css_selector("#nf-field-911")
+		location_field.click()
+		location_field.send_keys(self.location)
+		location_field.click()	
 
+	@exception
 	def type_description_of_request(self):
-		#get box, type keys
-		pass
-
+		description_field = self.browser.find_element_by_css_selector("#nf-field-912")
+		description_field.click()
+		description_field.send_keys(self.facility_description)
+		description_field.click()	
+		
+	@exception
 	def fill_out_page(self):
-		super.type_name()
-		super.type_email()
+		super().type_name()
+		super().type_email()
 		self.select_location_of_request()
+		self.type_description_of_request()
 
-	def main(self):
-		# create a ninja forms object and create a browser
-		form_automation = Facility_Request_Automator()
-		form_automation.get_user_info()
-		form_automation.get_facility_request_info()
-		# browser = webdriver.Chrome()
-		global browser_automate #stops browser from closing
-		browser_automate = form_automation.start_browser()
-		form_automation.get_forms_page()
-		form_automation.get_facility_form()
-		form_automation.fill_out_page()
-
-form_automation = Facility_Request_Automator()
-form_automation.get_user_info()
-# form_automation.get_facility_request_info()
-
-location = form_automation.get_location()
+def main():
+	# create a ninja forms object and create a browser
+	form_automation = Facility_Request_Automator()
+	form_automation.get_user_info()
+	form_automation.get_facility_request_info()
+	# browser = webdriver.Chrome()
+	global browser_automate #stops browser from closing
+	browser_automate = form_automation.start_browser()
+	form_automation.get_forms_page()
+	form_automation.get_facility_form()
+	form_automation.fill_out_page()
 
 
+main()
 
