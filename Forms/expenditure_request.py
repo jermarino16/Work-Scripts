@@ -32,7 +32,9 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 			self.get_payment_info() #start over and get a better input 
 		#if check ask for vendor information
 		if self.payment_type == "CREDIT CARD" or self.payment_type == "1":
+			self.payment_type = "Credit" #set payment type to check
 			self.payment_to = input("Who's Card? ")
+
 		elif self.payment_type == "CHECK" or self.payment_type == "2":
 			#if check ask
 			self.payment_type = "Check" #set payment type to check
@@ -90,11 +92,16 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 		# amount_field.send_keys("10")
 
 	@exception
-	def type_check_info(self):
-		check_field = self.browser.find_element_by_css_selector("#nf-field-794")
-		check_field.click()
-		check_field.send_keys(self.payment_to)
+	def type_payment_info(self):
+		if (self.payment_type == "CHECK"):
+			check_field = self.browser.find_element_by_css_selector("#nf-field-794")
+			check_field.click()
+			check_field.send_keys(self.payment_to)
 
+		elif (self.payment_type == "Credit"):
+			credit_field = self.browser.find_element_by_css_selector("#nf-field-766")
+			credit_field.click()
+			credit_field.send_keys(self.payment_to)
 	@exception
 	def select_payment_type(self):
 		payment_type_field = self.browser.find_element_by_css_selector("#nf-field-758")
@@ -115,7 +122,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 		self.select_category()
 		self.type_amount()
 		self.select_payment_type()
-		self.type_check_info()
+		self.type_payment_info()
 		self.type_notes()
 		return super().browser
 
