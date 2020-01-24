@@ -25,7 +25,10 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 		self.switch_tabs()
 
 	def get_location(self):
-		valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+		valid_inputs = {"1": "Sanctuary", "2": "Children's Ministry", "3": "Office",
+						"4": "Potter's House", "5": "Grace Building", "6": "Foyer",
+						"7": "Overflow Room", "8": "Kitchen", "9": "Parking Lot",
+						"10": "Other" }
 		#display possible locations
 		print("Where is the request?")
 		print("1. Sanctuary")
@@ -37,19 +40,18 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 		print("7. Overflow Room")
 		print("8. Kitchen")
 		print("9. Parking Lot")
-
 		self.location = input("10. Other\n")
 
-		print (self.location in valid_inputs)
-
-		if self.location not in valid_inputs:
+		if self.location not in valid_inputs.keys():
 			print("\nYour input is invalid, please type the number of the location")
 			self.get_location()
 
+		self.location = valid_inputs[self.location]#get dictionary value of input
 		return self.location
 
 	def get_description(self):
 		#prompt for user input
+		
 		#save user input
 		pass
 
@@ -85,10 +87,9 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 
 form_automation = Facility_Request_Automator()
 form_automation.get_user_info()
-form_automation.get_facility_request_info()
+# form_automation.get_facility_request_info()
 
 location = form_automation.get_location()
 
-print("Sweet that's a valid input: the location is: " + location)
 
 
