@@ -152,7 +152,7 @@ class Ninja_Forms_Automator():
 
 		email_field = self.browser.find_element_by_name("email")
 		email_field.click()
-		email_field.send_keys(self.user_email)	
+		email_field.send_keys(self.user_email)
 
 
 
