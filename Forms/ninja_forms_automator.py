@@ -37,10 +37,21 @@ class Ninja_Forms_Automator():
 
 		return wrapper
 
-	def is_valid_email(self, email):
+	def is_valid_email(self, email_input):
 		email_regex = re.compile(r"\b\w+@{1}\w+.{1}\w+\b")
-		match = email_regex.search(email)
+		match = email_regex.search(email_input)
 		if match:
+			return True
+		return False
+
+	def is_valid_phone(self, phone_input):
+		standard_phone_regex = re.compile(r"\b\d{3}?-?\d{3}-?\d{4}\b")
+		parentheses_phone_regex = re.compile(r"\(\d{3}\)\s?\d{3}\s?-?\d{4}\b")
+		whitespace_phone_regex = re.compile(r"\b\d{3}\s?\d{3}\s?\d{4}\b")
+		match1 = standard_phone_regex.search(phone_input)
+		match2 = parentheses_phone_regex.search(phone_input)
+		match3 = whitespace_phone_regex.search(phone_input)
+		if match1 or match2 or match3:
 			return True
 		return False
 
@@ -59,6 +70,14 @@ class Ninja_Forms_Automator():
 			self.get_email()
 
 		return self.user_email
+
+	def get_phone(self):
+		self.user_phone = input("What's the phone number? ")
+		if not (self.is_valid_phone(self.user_phone)):
+			print("That's not valid try again\n")
+			self.get_phone()
+
+		return self.user_phone
 
 	def get_user_info(self):
 		# global user_name, user_email, user_phone
@@ -145,17 +164,17 @@ class Ninja_Forms_Automator():
 
 
 # ALL OF THESE WORK NEED TO IMPLEMENT ON EXPENDITURE FORM
-ninja_forms = Ninja_Forms_Automator()
-# ninja_forms.start_browser()
-# ninja_forms.get_forms_page()
-# ninja_forms.get_expenditure_form()
-# ninja_forms.type_name()
-# ninja_forms.type_phone()
-# ninja_forms.type_email()
-# ninja_forms.next_page()
-email = ninja_forms.get_email()
+# ninja_forms = Ninja_Forms_Automator()
+# # ninja_forms.start_browser()
+# # ninja_forms.get_forms_page()
+# # ninja_forms.get_expenditure_form()
+# # ninja_forms.type_name()
+# # ninja_forms.type_phone()
+# # ninja_forms.type_email()
+# # ninja_forms.next_page()
+# phone = ninja_forms.get_phone()
 
-print("Woohoo gtt a valid email its: " + email)
+# print("Woohoo got a valid phone its: " + phone)
 
 
 
