@@ -154,13 +154,6 @@ class Ninja_Forms_Automator():
 		email_field.click()
 		email_field.send_keys(self.user_email)	
 
-	@exception
-	def get_expenditure_form(self):
-		#click the hyperlink
-		expenditure_hyperlink = self.browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(2) > a")
-		expenditure_hyperlink.click()
-		self.switch_tabs()
-
 
 
 # ALL OF THESE WORK NEED TO IMPLEMENT ON EXPENDITURE FORM

@@ -127,6 +127,13 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 		self.type_notes()
 		return super().browser
 
+	@exception	
+	def get_expenditure_form(self):
+		#click the hyperlink
+		expenditure_hyperlink = self.browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(2) > a")
+		expenditure_hyperlink.click()
+		self.switch_tabs()
+
 def main():
 	# create a ninja forms object and create a browser
 	form_automation = Expenditure_Request_Automator()
