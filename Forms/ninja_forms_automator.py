@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 import chromedriver_binary  # Adds chromedriver binary to path
 import functools #for error handling
+import re
 
 from time import sleep #to pause execution
 
@@ -36,6 +37,13 @@ class Ninja_Forms_Automator():
 
 		return wrapper
 
+	def is_valid_email(self, email):
+		email_regex = re.compile(r"\b\w+@{1}\w+.{1}\w+\b")
+		match = email_regex.search(email)
+		if match:
+			return True
+		return False
+
 	def get_default_user_values(self):
 		# global user_name, user_email, user_phone
 		print("Proceeding with default values")
@@ -43,6 +51,14 @@ class Ninja_Forms_Automator():
 		self.user_name = "Jeremy Marino"
 		self.user_email = "Jeremy@ccbf.net"
 		self.user_phone = "951-764-2881"
+
+	def get_email(self):
+		self.user_email = input("What's the email? ")
+		if not (self.is_valid_email(self.user_email)):
+			print("That's not valid try again\n")
+			self.get_email()
+
+		return self.user_email
 
 	def get_user_info(self):
 		# global user_name, user_email, user_phone
@@ -52,7 +68,7 @@ class Ninja_Forms_Automator():
 			self.get_default_user_values()
 		else: 
 			self.user_name = input("Who's filling out the form? ")
-			self.user_email = input("What's the email? ")
+			self.user_email = self.get_email()
 			self.user_phone = input("What's your phone number? ")
 
 	@exception
@@ -129,7 +145,7 @@ class Ninja_Forms_Automator():
 
 
 # ALL OF THESE WORK NEED TO IMPLEMENT ON EXPENDITURE FORM
-# ninja_forms = Ninja_Forms_Automator()
+ninja_forms = Ninja_Forms_Automator()
 # ninja_forms.start_browser()
 # ninja_forms.get_forms_page()
 # ninja_forms.get_expenditure_form()
@@ -137,6 +153,10 @@ class Ninja_Forms_Automator():
 # ninja_forms.type_phone()
 # ninja_forms.type_email()
 # ninja_forms.next_page()
+email = ninja_forms.get_email()
+
+print("Woohoo gtt a valid email its: " + email)
+
 
 
 
