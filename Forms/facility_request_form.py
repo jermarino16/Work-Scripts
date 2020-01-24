@@ -18,24 +18,60 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 
 		return wrapper
 
-	def get_facility_form():
+	def get_facility_form(self):
+		#click the hyperlink
+		facility_hyperlink = self.browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(4) > a")
+		facility_hyperlink.click()
+		self.switch_tabs()
+
+	def get_location(self):
+		valid_inputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+		#display possible locations
+		print("Where is the request?")
+		print("1. Sanctuary")
+		print("2. Children's Ministry")
+		print("3. Office")
+		print("4. Potter's House")
+		print("5. Grace Building")
+		print("6. Foyer")
+		print("7. Overflow Room")
+		print("8. Kitchen")
+		print("9. Parking Lot")
+
+		self.location = input("10. Other\n")
+
+		print (self.location in valid_inputs)
+
+		if self.location not in valid_inputs:
+			print("\nYour input is invalid, please type the number of the location")
+			self.get_location()
+
+		return self.location
+
+	def get_description(self):
+		#prompt for user input
+		#save user input
 		pass
 
 	def get_facility_request_info(self):
+		self.get_location()
+		#get description
 		pass
 
 	def select_location_of_request(self):
+		#select the location
 		pass
 
 	def type_description_of_request(self):
+		#get box, type keys
 		pass
 
-	def fill_out_page():
+	def fill_out_page(self):
 		super.type_name()
 		super.type_email()
 		self.select_location_of_request()
 
-	def main():
+	def main(self):
 		# create a ninja forms object and create a browser
 		form_automation = Facility_Request_Automator()
 		form_automation.get_user_info()
@@ -47,6 +83,12 @@ class Facility_Request_Automator(ninja.Ninja_Forms_Automator):
 		form_automation.get_facility_form()
 		form_automation.fill_out_page()
 
+form_automation = Facility_Request_Automator()
+form_automation.get_user_info()
+form_automation.get_facility_request_info()
 
+location = form_automation.get_location()
+
+print("Sweet that's a valid input: the location is: " + location)
 
 
