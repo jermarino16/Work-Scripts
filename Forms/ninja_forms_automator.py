@@ -88,7 +88,7 @@ class Ninja_Forms_Automator():
 		else: 
 			self.user_name = input("Who's filling out the form? ")
 			self.user_email = self.get_email()
-			self.user_phone = input("What's your phone number? ")
+			self.user_phone = self.get_phone()
 
 	@exception
 	def get_forms_page(self):
