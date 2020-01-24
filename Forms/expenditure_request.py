@@ -22,25 +22,21 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 
 	def get_payment_info(self):
 		acceptable_inputs = ["1", "2", "CHECK", "CREDIT CARD"]
-		# not_acceptable = True:
-		# while (acceptable_input)
 		print("What payment will you use?")
 		print("1. Credit Card")
 		self.payment_type = input("2. Check\n")
 		self.payment_type = self.payment_type.upper()
-		print(self.payment_type)
-		if self.payment_type in [acceptable_inputs]:
-			print("Input is not valid, either type 1, 2, or check, or credit card")
+		# print(self.payment_type == test)
+		if self.payment_type not in acceptable_inputs:
+			print("\nInput is not valid, either type 1, 2, or check, or credit card")
 			self.get_payment_info() #start over and get a better input 
 		#if check ask for vendor information
 		if self.payment_type == "CREDIT CARD" or self.payment_type == "1":
-			self.payment_to = input("Who's Card?")
+			self.payment_to = input("Who's Card? ")
 		elif self.payment_type == "CHECK" or self.payment_type == "2":
 			#if check ask
 			self.payment_type = "Check" #set payment type to check
-			self.payment_to = input("Who is it written to?")
-		#if credit ask for whos card
-		#do nothing for petty cash or wire
+			self.payment_to = input("Who is it written to? ")
 
 	def get_purchase_info(self):		
 		self.purchase_description  = input("What's the purchase? ")
@@ -140,3 +136,6 @@ def main():
 
 
 main()
+# form_automation = Expenditure_Request_Automator()
+
+# form_automation.get_payment_info()
