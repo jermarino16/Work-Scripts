@@ -93,7 +93,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 
 	@exception
 	def type_payment_info(self):
-		if (self.payment_type == "CHECK"):
+		if (self.payment_type == "Check"):
 			check_field = self.browser.find_element_by_css_selector("#nf-field-794")
 			check_field.click()
 			check_field.send_keys(self.payment_to)
@@ -102,6 +102,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 			credit_field = self.browser.find_element_by_css_selector("#nf-field-766")
 			credit_field.click()
 			credit_field.send_keys(self.payment_to)
+
 	@exception
 	def select_payment_type(self):
 		payment_type_field = self.browser.find_element_by_css_selector("#nf-field-758")
