@@ -12,7 +12,7 @@ class IT_Request_Automator():
 	browser = ""
 	user_name, email, phone = "", "", ""
 	"""
-	A Class for automating IT FORM
+	A Class for automating it requests
 	"""
 	def __init__(self):
 		self.user_name = "Jeremy Marino"
@@ -24,7 +24,7 @@ class IT_Request_Automator():
 		self.browser = webdriver.Chrome()
 		return self.browser
 
-	def exception(fn):
+	def exception(self, fn):
 		"""
 		A decorator that wraps the passed in function and logs exceptions should one occur
 		"""
@@ -167,7 +167,7 @@ class IT_Request_Automator():
 # # ninja_forms.next_page()
 # phone = ninja_forms.get_phone()
 
-# print("Woohoo got a valid phone its: " + phone)
+print("Woohoo got a valid phone its: ")
 
 
 
