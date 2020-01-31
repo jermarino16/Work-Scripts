@@ -3,22 +3,22 @@ import functools #for error handling
 from selenium.common.exceptions import NoSuchElementException
 
 
+def exception(fn):
+	@functools.wraps(fn)
+	def wrapper(*args, **kwargs):
+		try:
+			return fn(*args, **kwargs)
+		except NoSuchElementException:
+			print("There was a NoSuchElementException in " + fn.__name__) 
+
+	return wrapper
+
 class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 	purchase_description, purchase_ministry, purchase_category = "", "", ""
 	purchase_amount, payment_type, payment_to, notes = "", "", "", ""
 
 	def __init__(self):
 		super().__init__()
-
-	def exception(fn):
-		@functools.wraps(fn)
-		def wrapper(*args, **kwargs):
-			try:
-				return fn(*args, **kwargs)
-			except NoSuchElementException:
-				print("There was a NoSuchElementException in " + fn.__name__) 
-
-		return wrapper
 
 	def get_payment_info(self):
 		acceptable_inputs = ["1", "2", "CHECK", "CREDIT CARD"]
@@ -51,7 +51,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 	@exception
 	def get_expenditure_form(self):
 		#click the hyperlink
-		expenditure_hyperlink = self.browser.find_element_by_css_selector("body > div.sticky_top > section > div > ol > li:nth-child(2) > a")
+		expenditure_hyperlink = self.browser.find_element_by_css_selector("body s> div.sticky_top > section > div > ol > li:nth-child(2) > a")
 		expenditure_hyperlink.click()
 		super().switch_tabs()
 
