@@ -44,13 +44,6 @@ class IT_Request_Automator():
 			return True
 		return False
 
-	def get_default_user_values(self):
-		# global user_name, user_email, user_phone
-		print("Proceeding with default values")
-
-		self.user_name = "Jeremy Marino"
-		self.user_email = "Jeremy@ccbf.net"
-
 	def get_email(self):
 		self.user_email = input("What's the email? ")
 		if not (self.is_valid_email(self.user_email)):
@@ -62,11 +55,11 @@ class IT_Request_Automator():
 	def get_user_info(self):
 		# global user_name, user_email, user_phone
 
-		default_values = input("Do you want to use default values? 1 for yes : ")
-		if default_values == "1":
-			self.get_default_user_values()
+		default_email = input("Do you want to proceed with e-mail 'Jeremy@ccbf.net'? (y/n): ")
+		if default_email == "y":
+			self.email = "Jeremy@ccbf.net"
 		else: 
-			self.email = get_email()
+			self.email = self.get_email()
 
 	@exception
 	def get_request_page(self):
@@ -75,10 +68,17 @@ class IT_Request_Automator():
 
 	@exception
 	def type_email(self):
-		email_field = self.browser.find_element_by_class_name("sc-kvZOFW cyviHW")
+		email_field = self.browser.find_element_by_css_selector("#email")
 		email_field.click()
 		email_field.send_keys(self.user_email)
 
+def main():
+    it_form = IT_Request_Automator()
+    it_form.get_user_info()
+    global browser_automate #stops browser from closing
+    browser_automate = it_form.start_browser()
+    it_form.get_request_page()
+    it_form.type_email()
 
-
+main()
 
