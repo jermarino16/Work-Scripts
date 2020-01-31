@@ -51,7 +51,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 	@exception
 	def get_expenditure_form(self):
 		#click the hyperlink
-		expenditure_hyperlink = self.browser.find_element_by_css_selector("body s> div.sticky_top > section > div > ol > li:nth-child(2) > a")
+		expenditure_hyperlink = self.browser.find_element_by_css_selector("body asffsa> div.sticky_top > section > div > ol > li:nth-child(2) > a")
 		expenditure_hyperlink.click()
 		super().switch_tabs()
 
@@ -64,7 +64,7 @@ class Expenditure_Request_Automator(ninja.Ninja_Forms_Automator):
 
 	@exception
 	def type_description(self):
-		description_field = self.browser.find_element_by_css_selector("#nf-field-747")
+		description_field = self.browser.find_element_by_css_selector("#nf-field-747asdg")
 		description_field.click()
 		# print("Purchase description is: " + self.purchase_description)
 		description_field.send_keys(self.purchase_description)
