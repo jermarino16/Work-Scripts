@@ -86,12 +86,13 @@ class IT_Request_Automator():
 def main():
     it_form = IT_Request_Automator()
     it_form.get_user_info()
-    it_form.get_description()
+    it_form.get_summary()
     global browser_automate #stops browser from closing
     browser_automate = it_form.start_browser()
     it_form.get_request_page()
-    it_form.type_description()
-    # it_form.type_email()
+    sleep(5); #sleep for page to load
+    it_form.type_summary()
+    it_form.type_email()
 
 main()
 
