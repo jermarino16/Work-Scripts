@@ -19,6 +19,7 @@ def exception(fn):
         except NoSuchElementException:
             print("There was a NoSuchElementException in " + fn.__name__) 
 
+
     return wrapper
 
 class IT_Request_Automator():
@@ -72,13 +73,23 @@ class IT_Request_Automator():
 		email_field.click()
 		email_field.send_keys(self.user_email)
 
+	@exception
+	def type_description(self):
+		description_field = self.browser.find_element_by_css_selector("#summary")
+		description_field.click()
+		description_field.send_keys(self.user_email)
+
+	@exception
+	def get_description(self):
+		# get description
+
 def main():
     it_form = IT_Request_Automator()
     it_form.get_user_info()
     global browser_automate #stops browser from closing
     browser_automate = it_form.start_browser()
     it_form.get_request_page()
-    it_form.type_email()
+    # it_form.type_email()
 
 main()
 
