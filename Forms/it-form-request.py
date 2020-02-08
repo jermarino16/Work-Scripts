@@ -75,24 +75,36 @@ class IT_Request_Automator():
 
 	@exception
 	def type_summary(self):
-		description_field = self.browser.find_element_by_css_selector("#summary")
-		description_field.click()
-		description_field.send_keys(self.it_summary)
+		summary_field = self.browser.find_element_by_css_selector("#summary")
+		summary_field.click()
+		summary_field.send_keys(self.it_summary)
 
 	@exception
 	def get_summary(self):
 		self.it_summary = input("What's the summary?\n")
 
+	@exception
+	def type_description(self):
+		description_field = self.browser.find_element_by_css_selector("#description")
+		description_field.click()
+		description_field.send_keys(self.it_description)
+
+	@exception
+	def get_description(self):
+		self.it_description = input("What's the description?\n")
+
 def main():
     it_form = IT_Request_Automator()
     it_form.get_user_info()
     it_form.get_summary()
+    it_form.get_description()
     global browser_automate #stops browser from closing
     browser_automate = it_form.start_browser()
     it_form.get_request_page()
-    sleep(5); #sleep for page to load
+    sleep(2.5); #sleep for page to load
     it_form.type_summary()
     it_form.type_email()
+    it_form.type_description()
 
 main()
 
